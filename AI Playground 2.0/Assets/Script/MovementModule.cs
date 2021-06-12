@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class MovementModule : MonoBehaviour
 {
@@ -13,6 +10,7 @@ public class MovementModule : MonoBehaviour
     public bool indicators = false;
     public bool playerControlled = false;
     #endregion
+
 
     [Header("Actual")]
     public float maxSpeed = 4;
@@ -30,11 +28,6 @@ public class MovementModule : MonoBehaviour
     public Vector2 CurrentTargetPos { get { return currentTargetPos;} set { /*Debug.Log("value being changed to" + value);*/ currentTargetPos = value; } }
     public LookTypes lookType;
 
-    //to be deleted
-    public BaseEnemy baseEnemyTemp;
-    public Vector2 tempPos;
-    public float cooldown = 1f;
-    
     Path path;
 
     #region Properties
@@ -49,8 +42,6 @@ public class MovementModule : MonoBehaviour
         {
             playerController = GetComponent<PlayerController>();
         }
-
-        baseEnemyTemp = GetComponent<BaseEnemy>();
     }
 
     private void FixedUpdate()
@@ -70,25 +61,6 @@ public class MovementModule : MonoBehaviour
             PathRequestManager.RequestPath(transform.position, mousePos, OnPathFound);
         } 
         #endregion
-    }
-
-    private void LateUpdate()
-    {
-        if (cooldown > 0)
-        {
-            cooldown -= Time.deltaTime;
-        }
-        else
-        {
-            if (!baseEnemyTemp.exception && baseEnemyTemp.currentTarget != null)
-            {
-                currentTargetPos = baseEnemyTemp.currentTarget.GetComponent<MovementModule>().tempPos;
-                PathRequestManager.RequestPath(transform.position, currentTargetPos, OnPathFound);
-            }
-
-            cooldown = 0.1f;
-        }
-
     }
 
     #region Movement Functios

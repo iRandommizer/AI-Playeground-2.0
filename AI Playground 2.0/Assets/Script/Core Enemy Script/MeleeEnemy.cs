@@ -12,7 +12,7 @@ public class MeleeEnemy : BaseEnemy
 
         mFSM.Add((int)EnemyStateTypes.STRAFING, new EnemyState(mFSM, EnemyStateTypes.STRAFING, this));
 
-        //InitializeStrafingState();
+        InitializeStrafingState();
     }
 
     public override void InitializeChasingState()
@@ -25,7 +25,7 @@ public class MeleeEnemy : BaseEnemy
         {
             if (currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) <= strafingDist && currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude < rb.velocity.magnitude)
             {
-                //SetState(EnemyStateTypes.STRAFING);
+                SetState(EnemyStateTypes.STRAFING);
             }
         };
     }

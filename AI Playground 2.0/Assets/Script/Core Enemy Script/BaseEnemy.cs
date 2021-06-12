@@ -22,7 +22,7 @@ public abstract class BaseEnemy : MonoBehaviour
     // Colliders
     [HideInInspector] public Collider2D mainCollider;
 
-    [SerializeField]public Transform currentTarget; // Reference to the transform of the current target 
+    [SerializeField]protected Transform currentTarget; // Reference to the transform of the current target 
     protected Vector2 lastPosOfTarget;
 
     // Data
@@ -76,11 +76,6 @@ public abstract class BaseEnemy : MonoBehaviour
         {
             SetState(EnemyStateTypes.WANDERING);
         }
-
-        if (exception)
-        {
-            currentTarget = this.transform;
-        }
     }
 
     public virtual void FixedUpdate()
@@ -94,17 +89,17 @@ public abstract class BaseEnemy : MonoBehaviour
         float wanderSpeed = 60;
         if (exception)
         {
-            wanderSpeed = 90;
+            wanderSpeed = 70;
         }
         float randomYval = Random.Range(1, 1000);
         EnemyState state = (EnemyState)mFSM.GetState((int)EnemyStateTypes.WANDERING);
 
         state.OnEnterDelegate += delegate ()
         {
-        movementModule.lookType = LookTypes.INDIRECTION;
-        movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
-        movementModule.CurrentTargetPos = lastPosOfTarget;
-        movementModule.maxSpeed = wanderSpeed;            
+            movementModule.lookType = LookTypes.INDIRECTION;
+            movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
+            movementModule.CurrentTargetPos = lastPosOfTarget;
+            movementModule.maxSpeed = wanderSpeed;            
         };
 
         state.OnUpdateDelegate += delegate ()
@@ -218,10 +213,10 @@ public abstract class BaseEnemy : MonoBehaviour
                 lastPosOfTarget = (Vector2)currentTarget.position + currentTarget.GetComponent<Rigidbody2D>().velocity.normalized * currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude / 4;
             }
 
-            // if (currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) < 6 && attackController.readyToFight)
-            // {
-            //     SetState(EnemyStateTypes.ATTACKING);
-            // }
+            if (currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) < 6 && attackController.readyToFight)
+            {
+                SetState(EnemyStateTypes.ATTACKING);
+            }
         };
     }
 
