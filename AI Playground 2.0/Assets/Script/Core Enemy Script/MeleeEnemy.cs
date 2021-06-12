@@ -43,7 +43,7 @@ public class MeleeEnemy : BaseEnemy
             movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
 
             // Adjust the max speed of the entity
-            movementModule.maxSpeed = 45; 
+            movementModule.maxSpeed = 30; 
         };
 
         state.OnUpdateDelegate += delegate ()

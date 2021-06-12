@@ -14,7 +14,7 @@ public class MovementModule : MonoBehaviour
 
     [Header("Actual")]
     public float maxSpeed = 4;
-    public float steerStrength { get { return maxSpeed * 5; } }
+    public float steerStrength { get { return maxSpeed * 6; } }
 
     public Rigidbody2D rb;
 
@@ -96,16 +96,16 @@ public class MovementModule : MonoBehaviour
         Vector2 desiredSteeringForce = (desiredVel - velocity) * steerStrength;
         Vector2 acceleration = Vector2.ClampMagnitude(desiredSteeringForce, steerStrength) / 1;
 
-        velocity = Vector2.ClampMagnitude(velocity + acceleration * Time.deltaTime, maxSpeed);
+        velocity = Vector2.ClampMagnitude(velocity + acceleration * Time.fixedDeltaTime, maxSpeed);
 
-        rb.velocity = velocity * Time.deltaTime * maxSpeed;
+        rb.velocity = velocity * (Time.fixedDeltaTime * maxSpeed);
     } 
 
     private void RotateTo(Vector2 lookDirection)
     {
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90;
         //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), (Time.deltaTime * rb.velocity.magnitude) + (Time.deltaTime * 15));
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), (Time.fixedDeltaTime * rb.velocity.magnitude) + (Time.fixedDeltaTime * 15));
     }
     #endregion
 

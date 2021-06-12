@@ -86,10 +86,10 @@ public abstract class BaseEnemy : MonoBehaviour
     #region State Functions
     public virtual void InitializeWanderingState()
     {
-        float wanderSpeed = 60;
+        float wanderSpeed = 25;
         if (exception)
         {
-            wanderSpeed = 70;
+            wanderSpeed = 50;
         }
         float randomYval = Random.Range(1, 1000);
         EnemyState state = (EnemyState)mFSM.GetState((int)EnemyStateTypes.WANDERING);
@@ -113,10 +113,10 @@ public abstract class BaseEnemy : MonoBehaviour
             else
             {
                 movementModule.maxSpeed = wanderSpeed * noiseVal;
-                //if (exception)
-                //{
-                //    movementModule.maxSpeed = wanderSpeed * (noiseVal / 4 + 0.75f);
-                //}
+                if (exception)
+                {
+                    movementModule.maxSpeed = wanderSpeed * (noiseVal / 4 + 0.75f);
+                }
             }
 
             currentTarget = LookForTarget("Player");
@@ -145,7 +145,7 @@ public abstract class BaseEnemy : MonoBehaviour
         state.OnEnterDelegate += delegate ()
         {
             movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
-            movementModule.maxSpeed = 60;
+            movementModule.maxSpeed = 40;
             PathRequestManager.RequestPath(movementModule.BackPos, lastPosOfTarget, movementModule.OnPathFound);
         };
 
@@ -190,7 +190,7 @@ public abstract class BaseEnemy : MonoBehaviour
         state.OnEnterDelegate += delegate ()
         {
             movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
-            movementModule.maxSpeed = 55;
+            movementModule.maxSpeed = 50;
         };
 
         state.OnUpdateDelegate += delegate ()

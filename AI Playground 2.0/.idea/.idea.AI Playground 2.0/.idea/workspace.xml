@@ -12,10 +12,10 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Script/MovementModule.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/AvoidanceBehaviour.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/Core Enemy Script/BaseEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/MovementModule.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Core Enemy Script/MeleeEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Core Enemy Script/BaseEnemy.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1tqHfRbpr3ctWcFFLhu4SUU9IM1" />
@@ -61,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623489804461</updated>
-      <workItem from="1623489808665" duration="2997000" />
+      <workItem from="1623489808665" duration="3954000" />
     </task>
     <servers />
   </component>
