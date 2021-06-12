@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312681a7157001c4ab116dea34bb163a, type: 3}
+  m_Name: CSB Melee Wander Runner
+  m_EditorClassIdentifier: 
+  movementBehaviours:
+  - {fileID: 11400000, guid: 37bbc4f520c831443a4f6fc1545e9940, type: 2}
+  - {fileID: 11400000, guid: adbdb1251850d6b48bba672c7a0873b0, type: 2}
+  - {fileID: 11400000, guid: 9663d4366d0dd394082822de1412c133, type: 2}
+  - {fileID: 11400000, guid: bd6b0763c723ed84eb4f8fcdbd6d9de8, type: 2}
+  - {fileID: 11400000, guid: 21708fe7a812ecd478342b8a8ea5e634, type: 2}
+  movementWeights:
+  - 1
+  - 0.003
+  - 8
+  - 15
+  - 15
+  steeringDampening: 3
