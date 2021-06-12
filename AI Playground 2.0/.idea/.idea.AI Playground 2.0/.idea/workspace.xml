@@ -10,12 +10,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/AvoidanceBehaviour.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/MovementModule.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/AIBlackBoard.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Core Enemy Script/MeleeEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Core Enemy Script/BaseEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/MovementModule.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1tqHfRbpr3ctWcFFLhu4SUU9IM1" />
@@ -61,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623489804461</updated>
-      <workItem from="1623489808665" duration="3954000" />
+      <workItem from="1623489808665" duration="7473000" />
     </task>
     <servers />
   </component>

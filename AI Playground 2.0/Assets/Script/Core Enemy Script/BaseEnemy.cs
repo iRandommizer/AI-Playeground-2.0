@@ -162,7 +162,7 @@ public abstract class BaseEnemy : MonoBehaviour
             // If MovementModule Target != null, look for it's position
             if (currentTarget != null)
             {
-                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().FrontPos;
+                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().PosForwardx4;
                 lastPosOfTarget = (Vector2)currentTarget.position + currentTarget.GetComponent<Rigidbody2D>().velocity.normalized * currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude / 4;
             }
         };
@@ -190,7 +190,7 @@ public abstract class BaseEnemy : MonoBehaviour
         state.OnEnterDelegate += delegate ()
         {
             movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
-            movementModule.maxSpeed = 50;
+            movementModule.maxSpeed = 45;
         };
 
         state.OnUpdateDelegate += delegate ()
@@ -209,7 +209,7 @@ public abstract class BaseEnemy : MonoBehaviour
             if (currentTarget != null)
             {
 
-                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().FrontPos;
+                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().PosForwardx2;
                 lastPosOfTarget = (Vector2)currentTarget.position + currentTarget.GetComponent<Rigidbody2D>().velocity.normalized * currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude / 4;
             }
 

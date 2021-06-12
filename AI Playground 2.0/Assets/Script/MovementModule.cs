@@ -10,29 +10,37 @@ public class MovementModule : MonoBehaviour
     public bool indicators = false;
     public bool playerControlled = false;
     #endregion
-
-
-    [Header("Actual")]
+    
+    [Header("<-Velocity stuff->")]
     public float maxSpeed = 4;
-    public float steerStrength { get { return maxSpeed * 6; } }
+    public float steerStrength => maxSpeed * 6;
 
+    [Header("<-Other Components->")]
     public Rigidbody2D rb;
-
-    Vector2 velocity;
-    public Vector2 desiredDirection;
-
     public MovementBehaviour mb;
     private PlayerController playerController;
-
+    
+    [Header("<-Vectors->")]
+    private Vector2 velocity;
+    public Vector2 desiredDirection;
     private Vector2 currentTargetPos;
     public Vector2 CurrentTargetPos { get { return currentTargetPos;} set { /*Debug.Log("value being changed to" + value);*/ currentTargetPos = value; } }
+    
+    [Header("<-Enums->")]
     public LookTypes lookType;
 
     Path path;
 
-    #region Properties
-    public Vector2 FrontPos { get { if (rb != null) return (Vector2)transform.position + rb.velocity.normalized * rb.velocity.magnitude * 0.08f; else return transform.position; } }
-    public Vector2 BackPos { get { if (rb != null) return (Vector2)transform.position - rb.velocity.normalized * rb.velocity.magnitude * 0.08f; else return transform.position; } }
+    #region Helper Expressions
+    public Vector2 BackPos { get { if (rb != null) return (Vector2)transform.position - rb.velocity.normalized * rb.velocity.magnitude * 0.08f; else return transform.position; } } public Vector2 Postion => transform.position;
+    public Vector2 Forward => transform.up;
+    public Rigidbody2D RB => rb;
+    public Vector2 Velocity => RB.velocity;
+    public float Magnitude => Velocity.magnitude;
+    public Vector2 PosForwardx1 => Postion + (Forward * Magnitude * 0.02f);
+    public Vector2 PosForwardx2 => Postion + (Forward * Magnitude * 0.04f);
+    public Vector2 PosForwardx3 => Postion + (Forward * Magnitude * 0.06f);
+    public Vector2 PosForwardx4 => Postion + (Forward * Magnitude * 0.1f);
     #endregion
 
     private void Awake()
@@ -162,7 +170,7 @@ public class MovementModule : MonoBehaviour
         }
 
         //Handles.color = Color.black;
-        //Handles.DrawSolidArc(CurrentTargetPos, Vector3.forward, Vector3.up, 360, 0.5f);
+        //Handles.DrawSolidArc(PosForwardx4, Vector3.forward, Vector3.up, 360, 0.5f);
     }
 }
 

@@ -65,7 +65,7 @@ public class MeleeEnemy : BaseEnemy
 
             if(currentTarget != null)
             {
-                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().FrontPos;
+                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().PosForwardx3;
                 lastPosOfTarget = (Vector2)currentTarget.position + currentTarget.GetComponent<Rigidbody2D>().velocity.normalized * currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude/2;
                 //movementModule.CurrentTargetPos = lastPosOfTarget;
             }
