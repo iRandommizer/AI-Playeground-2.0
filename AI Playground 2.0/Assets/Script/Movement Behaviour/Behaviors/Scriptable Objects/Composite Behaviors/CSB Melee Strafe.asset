@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8fe9b41831ab4954ea72bbf226fa01eb, type: 2}
   movementWeights:
   - 0.5
-  - 0.01
+  - 1
   - 10
   - 10
   - 1

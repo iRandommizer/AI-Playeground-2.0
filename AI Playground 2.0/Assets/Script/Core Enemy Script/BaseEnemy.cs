@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
@@ -35,6 +31,9 @@ public abstract class BaseEnemy : MonoBehaviour
     #region Properties
 
     #endregion
+
+    #region Monobehaviour
+
     public virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -82,6 +81,8 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         mFSM.FixedUpdate();
     }
+
+    #endregion
 
     #region State Functions
     public virtual void InitializeWanderingState()
@@ -144,8 +145,9 @@ public abstract class BaseEnemy : MonoBehaviour
 
         state.OnEnterDelegate += delegate ()
         {
+            movementModule.StopCoroutine("FollowPath");
             movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
-            movementModule.maxSpeed = 40;
+            movementModule.maxSpeed = 45;
             PathRequestManager.RequestPath(movementModule.BackPos, lastPosOfTarget, movementModule.OnPathFound);
         };
 
@@ -162,7 +164,7 @@ public abstract class BaseEnemy : MonoBehaviour
             // If MovementModule Target != null, look for it's position
             if (currentTarget != null)
             {
-                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().PosForwardx4;
+                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().PosForwardx3;
                 lastPosOfTarget = (Vector2)currentTarget.position + currentTarget.GetComponent<Rigidbody2D>().velocity.normalized * currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude / 4;
             }
         };
@@ -190,7 +192,7 @@ public abstract class BaseEnemy : MonoBehaviour
         state.OnEnterDelegate += delegate ()
         {
             movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
-            movementModule.maxSpeed = 45;
+            movementModule.maxSpeed = 40;
         };
 
         state.OnUpdateDelegate += delegate ()
@@ -291,20 +293,7 @@ public abstract class BaseEnemy : MonoBehaviour
         return null;
     }
     #endregion
-
-    //!!
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (exception)
-        {
-            //if(collision.gameObject.GetComponent<BaseEnemy>() != null)
-            //{
-            //    Destroy(this.gameObject);
-            //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            //}
-        }
-    }
-
+    
     void OnDrawGizmos()
     {
         //!!            

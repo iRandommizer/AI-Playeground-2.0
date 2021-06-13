@@ -18,6 +18,6 @@ public class TargetDirectionBehaviour : MovementBehaviour
         {
             return Vector2.zero;
         }
-        return distance * t * t;
+        return (distance * t * t).normalized;
     }
 }

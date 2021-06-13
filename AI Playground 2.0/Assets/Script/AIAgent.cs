@@ -2,16 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// This class is for me to run the "Tick" functions for sensors, planners(FSM), blackboard
 public class AIAgent : MonoBehaviour
 {
     //private AISenses senses; //might not need this yet
     
-    private AIBlackBoard blackBoard;
-
-    public BaseEnemy EnemyFSMSystem { get; private set; } // !! I need to make the class more abstract
+    public AIBlackBoard blackBoard;
+    private BaseEnemy baseEnemy; // Reference to the agent's own decider
+    
 
     //private SensorySystem sensory;
 
     public AITask CurrentTask { get; set; }
+
+    private void Awake()
+    {
+        //blackBoard = new AIBlackBoard(this, GetComponent<FieldOfView>(),GetComponent<Animator>(),GetComponent<MovementModule>(), )
+    }
 }
