@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73f3441a-fbcd-4108-941c-b6a112ce44e9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Script/CompoundEffect.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Script/CompoundEffect.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AI Playground 2.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AI Playground 2.0/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Weighted Movement.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Weighted Movement.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/AIAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/AIAgent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/AIBlackBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/AIBlackBoard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Conditions/ExceptionCondition.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Conditions/ExceptionCondition.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Core Enemy Script/BaseEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Core Enemy Script/BaseEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/Scriptable Objects/Composite Behaviors/CBS Melee Chase.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/Scriptable Objects/Composite Behaviors/CBS Melee Chase.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/Scriptable Objects/Composite Behaviors/CSB Melee Strafe.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/Scriptable Objects/Composite Behaviors/CSB Melee Strafe.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/Scriptable Objects/Composite Behaviors/CSB Melee Wander Runner.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/Scriptable Objects/Composite Behaviors/CSB Melee Wander Runner.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/Scriptable Objects/Composite Behaviors/CSB Melee Wander.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/Scriptable Objects/Composite Behaviors/CSB Melee Wander.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/TargetDirectionBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/TargetDirectionBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MovementData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MovementData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/HerdAIBlackBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/HerdAIBlackBoard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Pathfinding/Path.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Pathfinding/Path.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +27,44 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Script/HerdAIBlackBoard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/EEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Strategy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A1AC446D-F41C-4A67-BECF-2F8317DC1792/54/b9df8d32/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/IEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Request.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/EStrategy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Effect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A1AC446D-F41C-4A67-BECF-2F8317DC1792/54/b9df8d32/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/CompoundEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/HerdAIBlackBoard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Yuan/Documents/_Game Projects/AI-Playeground-2.0/AI Playground 2.0/Assets/Script/CompoundEffect.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -45,14 +73,24 @@
       <option value="$PROJECT_DIR$/Assets/Script/MovementModule.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Conditions/ExceptionCondition.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/TargetDirectionBehaviour.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/Core Enemy Script/BaseEnemy.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/HerdAIBlackBoard.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/AIBlackBoard.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/AIAgent.cs" />
       <option value="$PROJECT_DIR$/Assets/Temp/TempStrategyPlanner.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/MovementData.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Strategy.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/EStrategy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/HerdAIBlackBoard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/AIBlackBoard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Core Enemy Script/BaseEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/IConsequentialEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/PrimativeEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/EEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/ICompoundEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/IEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/CompoundEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effects/Primative/TestEffects.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Pathfinding/Path.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Request.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1tqHfRbpr3ctWcFFLhu4SUU9IM1" />
@@ -101,6 +139,8 @@
       <updated>1623489804461</updated>
       <workItem from="1623489808665" duration="7473000" />
       <workItem from="1623557964703" duration="14425000" />
+      <workItem from="1623749977370" duration="4893000" />
+      <workItem from="1623805826245" duration="10024000" />
     </task>
     <servers />
   </component>

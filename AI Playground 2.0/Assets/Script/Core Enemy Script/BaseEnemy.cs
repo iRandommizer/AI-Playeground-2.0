@@ -65,7 +65,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public virtual void Update()
     {
-        mFSM.Update();
+        mFSM.Update(); // Order of excecution matters
         //!!TEMP
         if (Input.GetMouseButtonDown(0))
         {
