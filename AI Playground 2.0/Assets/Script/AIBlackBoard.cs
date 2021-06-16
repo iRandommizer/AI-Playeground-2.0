@@ -7,14 +7,12 @@ public class AIBlackBoard : BaseBlackBoard // might have to further breakdown th
     public FieldOfView Fow { get; } //!! Need to change it to Sensory System to compensate for multiple types of senses
     public Animator Animator { get; }
     public AIAgent Agent { get; } // Reference to the agent
-    public StrategyData StrategyData { get; set; }
 
-    public AIBlackBoard(AIAgent agent, FieldOfView fow, Animator animator, MovementModule movementModule, StrategyData strategyData)
+    public AIBlackBoard(AIAgent agent, FieldOfView fow, Animator animator, MovementModule movementModule)
     {
         Agent = agent;
         Fow = fow;
         Animator = animator;
         MovementModule = movementModule;
-        StrategyData = strategyData;
     }
 }

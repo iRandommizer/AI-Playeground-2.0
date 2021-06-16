@@ -12,9 +12,6 @@ public class AIAgent : MonoBehaviour
     
 
     //private SensorySystem sensory;
-
-    public AITask CurrentTask { get; set; }
-
     private void Awake()
     {
         //blackBoard = new AIBlackBoard(this, GetComponent<FieldOfView>(),GetComponent<Animator>(),GetComponent<MovementModule>(), )

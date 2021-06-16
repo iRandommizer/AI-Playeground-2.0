@@ -6,10 +6,8 @@ public class HerdAIBlackBoard : BaseBlackBoard
 {
     #region Private Data
     [SerializeField] private float displacementPeriod = 4;
-    #endregion  
-    
-    public List<EStrategy> availableStrategies = new List<EStrategy>(); // Holds all the available strategies the herd is capable of
-    
+    #endregion
+
     public List<AIAgent> AIAgents = new List<AIAgent>(); // Keeps track of all the agents within it's herd
     public List<AIAgent> enemyTargets = new List<AIAgent>(); // Need to consider that there could be more than 1 enemy
     public AIAgent CurrentTarget { get; set; }

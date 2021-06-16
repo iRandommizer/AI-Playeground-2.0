@@ -14,9 +14,6 @@ public class Request
         DesiredEffect = effect;
         Requestor = agent;
     }
-
-    public Tick()
-    {
-        
-    }
+    
+    //Update the status of a request
 }
