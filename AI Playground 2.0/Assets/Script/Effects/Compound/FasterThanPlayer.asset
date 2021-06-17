@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943b77bb3276966478556e1317bce4f3, type: 3}
   m_Name: FasterThanPlayer
   m_EditorClassIdentifier: 
-  _effectTitle: 0
+  _effectTitle: 8
   _parent: {fileID: 0}
-  _childEffects: []
+  _childEffects:
+  - {fileID: 11400000, guid: 933999bc770a4b541a2317039230244f, type: 2}
+  - {fileID: 11400000, guid: 135826523d9f69a4a82284e7fee26baf, type: 2}

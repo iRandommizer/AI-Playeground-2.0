@@ -9,8 +9,9 @@ public abstract class BaseEnemy : MonoBehaviour
 
     // External Side Componenets
     protected MovementModule movementModule; // Reference to the movement module of the enemy 
+    protected AIBlackBoard blackBoard;
     protected FieldOfView fow;
-    protected AttackController attackController;
+    protected AttackModule attackModule;
 
     // Physics
     [HideInInspector] public Rigidbody2D rb;
@@ -38,8 +39,9 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         movementModule = GetComponent<MovementModule>();
+        blackBoard = GetComponent<AIAgent>().blackBoard;
         fow = GetComponent<FieldOfView>();
-        attackController = GetComponent<AttackController>();
+        attackModule = GetComponent<AttackModule>();
 
         #region FSM Region
         mFSM = new FSM();
@@ -66,7 +68,8 @@ public abstract class BaseEnemy : MonoBehaviour
     public virtual void Update()
     {
         mFSM.Update(); // Order of excecution matters
-        //!!TEMP
+        #region Debug Tools
+
         if (Input.GetMouseButtonDown(0))
         {
             movementModule.CurrentTargetPos = Vector2.zero;
@@ -75,6 +78,8 @@ public abstract class BaseEnemy : MonoBehaviour
         {
             SetState(EnemyStateTypes.WANDERING);
         }
+
+        #endregion
     }
 
     public virtual void FixedUpdate()
@@ -215,7 +220,7 @@ public abstract class BaseEnemy : MonoBehaviour
                 lastPosOfTarget = (Vector2)currentTarget.position + currentTarget.GetComponent<Rigidbody2D>().velocity.normalized * currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude / 4;
             }
 
-            if (currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) < 6 && attackController.readyToFight)
+            if (currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) < 6 && attackModule.readyToFight)
             {
                 SetState(EnemyStateTypes.ATTACKING);
             }
@@ -233,8 +238,8 @@ public abstract class BaseEnemy : MonoBehaviour
         {
             movementModule.lookType = LookTypes.ATTARGET;
             movementModule.maxSpeed = 0;
-            attackController.PlayAnim("Enemy Attack");
-            animDur = attackController.attackAnim.GetCurrentAnimatorStateInfo(0).length;
+            attackModule.PlayAnim("Enemy Attack");
+            animDur = attackModule.attackAnim.GetCurrentAnimatorStateInfo(0).length;
         };
 
         state.OnUpdateDelegate += () => // Lambda Expression
@@ -251,8 +256,8 @@ public abstract class BaseEnemy : MonoBehaviour
 
         state.OnExitDelegate += delegate ()
         {
-            attackController.readyToFight = false;
-            attackController.attackCooldownCounter = 0;
+            attackModule.readyToFight = false;
+            attackModule.attackCooldownCounter = 0;
             movementModule.lookType = LookTypes.INDIRECTION;
         };
     }

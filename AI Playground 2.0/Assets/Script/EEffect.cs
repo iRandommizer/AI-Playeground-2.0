@@ -1,5 +1,6 @@
 ﻿public enum EEffect
 {
+    None,
     PressureTargetAway,
     ProjectilePressure,
     BlockageAbility,

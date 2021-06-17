@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effect/Primative")]
-public class Effect : ScriptableObject, IEffect
+public abstract class Effect : IEffect
 {
-    public EEffect EffectTitle => _effectTitle;
+    public EEffect EffectEnum => _effectEnum;
     public CompoundEffect parent => _parent;
 
-    [SerializeField]protected EEffect _effectTitle;
-    [SerializeField]protected CompoundEffect _parent;
+    public EEffect _effectEnum;
+    public CompoundEffect _parent;
+
 }

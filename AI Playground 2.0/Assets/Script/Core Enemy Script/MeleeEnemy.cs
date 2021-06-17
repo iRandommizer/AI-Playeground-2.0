@@ -70,7 +70,7 @@ public class MeleeEnemy : BaseEnemy
                 //movementModule.CurrentTargetPos = lastPosOfTarget;
             }
 
-            if(currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) < 6 && attackController.readyToFight)
+            if(currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) < 6 && attackModule.readyToFight)
             {
                 SetState(EnemyStateTypes.ATTACKING);
             }

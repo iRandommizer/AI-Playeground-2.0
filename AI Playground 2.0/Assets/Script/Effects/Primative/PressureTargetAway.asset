@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e881161afecae434dbd56d4e7c1174f0, type: 3}
   m_Name: PressureTargetAway
   m_EditorClassIdentifier: 
+  _effectTitle: 0
+  _parent: {fileID: 11400000, guid: f723c044dbde6e141b10ebb2377471c2, type: 2}

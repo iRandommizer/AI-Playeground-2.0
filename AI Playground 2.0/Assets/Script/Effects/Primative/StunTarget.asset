@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e881161afecae434dbd56d4e7c1174f0, type: 3}
   m_Name: StunTarget
   m_EditorClassIdentifier: 
-  _effectTitle: 2
-  _parent: {fileID: 0}
+  _effectTitle: 4
+  _parent: {fileID: 11400000, guid: 933999bc770a4b541a2317039230244f, type: 2}

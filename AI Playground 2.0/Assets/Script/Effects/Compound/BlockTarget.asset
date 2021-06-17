@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943b77bb3276966478556e1317bce4f3, type: 3}
   m_Name: BlockTarget
   m_EditorClassIdentifier: 
-  _effectTitle: 0
-  _parent: {fileID: 0}
-  _childEffects: []
+  _effectTitle: 3
+  _parent: {fileID: 11400000, guid: 933999bc770a4b541a2317039230244f, type: 2}
+  _childEffects:
+  - {fileID: 11400000, guid: 9957516a30a1ef740a1e75937cf2c74a, type: 2}
+  - {fileID: 11400000, guid: ab34e56d6ba97d3468d95981435db30c, type: 2}
+  - {fileID: 11400000, guid: 4c79a18162ccaeb4995a38741ea795a5, type: 2}

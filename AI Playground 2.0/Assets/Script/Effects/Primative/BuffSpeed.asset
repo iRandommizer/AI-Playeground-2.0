@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e881161afecae434dbd56d4e7c1174f0, type: 3}
-  m_Name: SlowAbility
+  m_Name: BuffSpeed
   m_EditorClassIdentifier: 
-  _effectTitle: 5
-  _parent: {fileID: 0}
+  _effectTitle: 7
+  _parent: {fileID: 11400000, guid: d4aec52bec4a0e94580dac48965c5890, type: 2}

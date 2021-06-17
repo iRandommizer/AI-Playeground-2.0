@@ -2,10 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Strictly for holding information about the Herd. Very minimal processing happens in this class
+/// </summary>
 public class HerdAIBlackBoard : BaseBlackBoard
 {
     #region Private Data
     [SerializeField] private float displacementPeriod = 4;
+    #endregion
+
+    #region Component Data
+
+    public RequestSystem requestSystem;
+
     #endregion
 
     public List<AIAgent> AIAgents = new List<AIAgent>(); // Keeps track of all the agents within it's herd
@@ -31,5 +40,7 @@ public class HerdAIBlackBoard : BaseBlackBoard
     public HerdAIBlackBoard(List<AIAgent> assignedAgents)
     {
         AIAgents = assignedAgents;
+
+        requestSystem = new RequestSystem();
     }
 }

@@ -5,12 +5,22 @@
 
     public EnemyStateTypes EnemyStateType { get { return mEnemyStateType; } } // Property which allows other classes to get reference of the state type
 
+    private EEffect mEffect;
+    public EEffect Effect { get { return mEffect; } }
+    
     // Constructor for the state to get the references for the BaseEnemy and its state type
     // !! Why is the BaseEnemy script Needed here??
-    public EnemyState(FSM fsm, EnemyStateTypes type, BaseEnemy baseEnemy) : base(fsm)
+    public EnemyState(FSM fsm, EnemyStateTypes type, BaseEnemy baseEnemy, EEffect effect = EEffect.None) : base(fsm)
     {
         mBaseEnemy = baseEnemy;
         mEnemyStateType = type;
+        mEffect = effect;
+
+        //Initialize all the effects the AI is capable of
+        if (effect != EEffect.None)
+        {
+            baseEnemy.GetComponent<AIAgent>().blackBoard.capableEffects.Add(effect);
+        }
     }
 
     public delegate void StateDelegate();
@@ -42,6 +52,7 @@
         base.FixedUpdate();
         OnFixedUpdateDelegate?.Invoke();
     }
+    
 }
 
 public enum EnemyStateTypes

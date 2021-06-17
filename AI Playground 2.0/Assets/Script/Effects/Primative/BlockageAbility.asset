@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BlockageAbility
   m_EditorClassIdentifier: 
   _effectTitle: 2
-  _parent: {fileID: 0}
+  _parent: {fileID: 11400000, guid: f723c044dbde6e141b10ebb2377471c2, type: 2}

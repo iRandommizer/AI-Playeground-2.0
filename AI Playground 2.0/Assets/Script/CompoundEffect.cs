@@ -2,31 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effect/Compound")]
-public class CompoundEffect : Effect
+public abstract class CompoundEffect : ICompoundEffect
 {
-    public List<Effect> childEffects => _childEffects;
-
-    [SerializeField]protected List<Effect> _childEffects;
-
-    public List<EEffect> GetAllPrimativeEffects(CompoundEffect compoundEffect, List<EEffect> singularList = null)
+    public abstract EEffect EffectEnum { get; }
+    public abstract List<IEffect> ChildEffects { get;} //I changed the list type to IEffect instead of Effect so this will probably cause issues
+    public List<EEffect> GetAllPrimativeEffects(List<EEffect> singularList = null)
     {
         List<EEffect> effects = new List<EEffect>();
         if (singularList != null)
         {
             effects = singularList;
-        }
-        for (int i = 0; i < compoundEffect.childEffects.Count; i++)
+        }       
+        for (int i = 0; i < ChildEffects.Count; i++)
         {
-            if (compoundEffect.childEffects[i] is  CompoundEffect ce)
+            if (ChildEffects[i] is ICompoundEffect ce)
             {
-                GetAllPrimativeEffects(ce, effects);
+                GetAllPrimativeEffects(effects);
                 continue;
             }
             
-            effects.Add(compoundEffect.childEffects[i].EffectTitle);
+            effects.Add(ChildEffects[i].EffectEnum);
         }
         return effects;
-        // Make a variable 
     }
 }

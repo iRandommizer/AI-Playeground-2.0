@@ -1594,6 +1594,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
+--- !u!114 &366463215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366463212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8bd45f3701571d4e9b6452d4fded01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackBoard:
+    EligableAIEntityState: 00000000
 --- !u!50 &366463218 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4537782589737964794, guid: 00bb2c3963f8f1a4bafbd503605083c6,
@@ -6639,7 +6653,7 @@ PrefabInstance:
     - target: {fileID: 571759532355638893, guid: 00bb2c3963f8f1a4bafbd503605083c6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 571759532355638893, guid: 00bb2c3963f8f1a4bafbd503605083c6,
         type: 3}
@@ -6860,7 +6874,7 @@ PrefabInstance:
     - target: {fileID: 4537782589737964797, guid: 00bb2c3963f8f1a4bafbd503605083c6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4537782589737964797, guid: 00bb2c3963f8f1a4bafbd503605083c6,
         type: 3}
