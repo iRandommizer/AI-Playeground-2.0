@@ -28,7 +28,7 @@ public class Request
     public void UpdateRequest(AIBlackBoard blackBoard)
     {
         timeElapsed += blackBoard.DeltaTime;
-        if (((EnemyState)(blackBoard.EnemyDecider.mFSM.m_currentState)).Effect != DesiredEffect.EffectEnum)
+        if (((EnemyState)(blackBoard.EnemyDecider.mFSM.m_currentState)).Effect != DesiredEffect.EffectTitle)
         {
             status = RequestStatus.Failed;
             AbortRequest();

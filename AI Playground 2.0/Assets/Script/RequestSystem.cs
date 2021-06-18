@@ -18,7 +18,7 @@ public class RequestSystem
         }
         else
         {
-            currentEffects.Add(curReq.DesiredEffect.EffectEnum);
+            currentEffects.Add(curReq.DesiredEffect.EffectTitle);
         }
 
         foreach (var c in passedEffects)
@@ -63,5 +63,17 @@ public class RequestSystem
             requestOnGoingPool.Remove(request);
         }
         Debug.LogWarning("Request has been discarded");
+    }
+
+    public void CheckRequestValidity(AIAgent requester, Effect desiredEffect, AIEntityStatePair pair)
+    {
+        foreach (var r in requestWaitingPool)
+        {
+            if (r.Requester == requester && r.DesiredEffect == desiredEffect && r.IntialStateValue == pair)
+            {
+                return;
+            }
+        }
+        requestWaitingPool.Add(new Request(desiredEffect, requester, pair));
     }
 }

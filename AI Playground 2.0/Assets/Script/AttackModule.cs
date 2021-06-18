@@ -63,12 +63,18 @@ public class AttackModule : MonoBehaviour, ISensor
                 currentAttackAmmoAmount += 1;
                 attackAmmoCooldownCounter = attackAmmoCooldown;
             }
+
+            if (currentAttackAmmoAmount > 0)
+            {
+                readyToFight = true;
+            }
         }
         
     }
     public void PlayAnim(string animName)
     {
         attackAnim.Play(animName);
+        currentAttackAmmoAmount -= 1;
     }
 
     public void RandomizeExtraDuration(float cooldownDur)
@@ -79,13 +85,12 @@ public class AttackModule : MonoBehaviour, ISensor
     {
         if (currentAttackAmmoAmount/attackAmmoAmount < 0.5f)
         {
-            blackBoard.SetEntityStateValue(AIEntityState.HasMultipleAttackAmmo, false);
+            AIEntityStatePair pair = blackBoard.SetEntityStateValue(AIEntityState.HasMultipleAttackAmmo, false);
         }
         else
         {
             AIEntityStatePair pair = blackBoard.SetEntityStateValue(AIEntityState.HasMultipleAttackAmmo, true);
-            RequestHandler requestHandler = GetComponent<AIAgent>().RequestHandler; //!! Need to find a better way to do this
-            requestHandler.MakeRequest(EEffect.SlowTarget, pair);
+            blackBoard.RequestHandler.MakeRequest(EffectAssets.i.SlowTarget, pair); // Make it so that I can put in the effect scriptable objects and send it as an effect
         }
     }
 

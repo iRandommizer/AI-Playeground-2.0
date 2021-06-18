@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
@@ -39,7 +41,6 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         movementModule = GetComponent<MovementModule>();
-        blackBoard = GetComponent<AIAgent>().blackBoard;
         fow = GetComponent<FieldOfView>();
         attackModule = GetComponent<AttackModule>();
 
@@ -63,6 +64,11 @@ public abstract class BaseEnemy : MonoBehaviour
 
         SetState(EnemyStateTypes.WANDERING);
         #endregion
+    }
+
+    private void Start()
+    {
+        blackBoard = GetComponent<AIAgent>().blackBoard;
     }
 
     public virtual void Update()

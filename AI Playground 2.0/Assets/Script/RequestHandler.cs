@@ -9,7 +9,7 @@ public class RequestHandler
 {
     public float tickRate = 0.5f;
     public Request currentRequest;
-
+    
     public RequestSystem assignedRequestSystem;
     public AIBlackBoard blackBoard;
 
@@ -19,9 +19,9 @@ public class RequestHandler
         blackBoard = _blackBoard;
     }
 
-    public void MakeRequest(EEffect effect, AIEntityStatePair trigger)
+    public void MakeRequest(Effect effect, AIEntityStatePair trigger)
     {
-        assignedRequestSystem.requestWaitingPool.Add(new Request(effect, blackBoard.Agent, trigger));
+        assignedRequestSystem.CheckRequestValidity(blackBoard.Agent, effect, trigger);
     }
 
     public void AskForRequest(List<EEffect> effects)
@@ -39,7 +39,7 @@ public class RequestHandler
             }
         }
     }
-
+    
     public void DiscardRequest(Request request)
     {
         assignedRequestSystem.DiscardRequest(request);

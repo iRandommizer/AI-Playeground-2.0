@@ -39,8 +39,9 @@ public class AIBlackBoard : BaseBlackBoard // might have to further breakdown th
 
     public AIEntityStatePair SetEntityStateValue(AIEntityState _state, bool value)
     {
-        FindAIEntityPair(_state).Value = value;
-        return new AIEntityStatePair(_state, value);
+        AIEntityStatePair pair = FindAIEntityPair(_state);
+        pair.Value = value;
+        return pair;
     }
 
     public AIEntityStatePair FindAIEntityPair(AIEntityState _state)

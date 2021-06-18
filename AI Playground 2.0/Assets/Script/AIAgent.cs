@@ -19,7 +19,7 @@ public class AIAgent : MonoBehaviour, ICooperative
     private void Awake()
     {
         SensorySystem = new SensorySystem(this);
-        RequestHandler = new RequestHandler(HerdRequestSystem, blackBoard); //!! null reference error
+        RequestHandler = new RequestHandler(HerdRequestSystem, blackBoard); //!!Probably gonna cause an error
         
         blackBoard = new AIBlackBoard(this,
             GetComponent<FieldOfView>(), 

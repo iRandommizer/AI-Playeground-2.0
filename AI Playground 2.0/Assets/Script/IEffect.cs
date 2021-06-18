@@ -1,11 +1,5 @@
-﻿using System.Collections.Generic;
-
-public interface IEffect
+﻿public interface IEffect
 {
-    EEffect EffectEnum { get; }
-}
-
-public interface ICompoundEffect : IEffect
-{ 
-    List<IEffect> ChildEffects { get; }
+    EEffect EffectTitle { get; }
+    CompoundEffect parent { get; }
 }
