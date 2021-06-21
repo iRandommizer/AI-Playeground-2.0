@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943b77bb3276966478556e1317bce4f3, type: 3}
   m_Name: BlockTarget
   m_EditorClassIdentifier: 
-  _effectTitle: 3
+  _effectTitle: 4
   _parent: {fileID: 11400000, guid: 933999bc770a4b541a2317039230244f, type: 2}
   _childEffects:
   - {fileID: 11400000, guid: 9957516a30a1ef740a1e75937cf2c74a, type: 2}

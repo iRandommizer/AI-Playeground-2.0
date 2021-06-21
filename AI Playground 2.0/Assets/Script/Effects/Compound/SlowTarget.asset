@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943b77bb3276966478556e1317bce4f3, type: 3}
   m_Name: SlowTarget
   m_EditorClassIdentifier: 
-  _effectTitle: 6
+  _effectTitle: 7
   _parent: {fileID: 11400000, guid: d4aec52bec4a0e94580dac48965c5890, type: 2}
   _childEffects:
   - {fileID: 11400000, guid: 19ef1ca80135e674e8ce8bb777f3d6b3, type: 2}

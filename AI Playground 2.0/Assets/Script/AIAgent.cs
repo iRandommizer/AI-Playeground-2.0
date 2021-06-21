@@ -5,6 +5,8 @@ using UnityEngine;
 // This class is for me to run the "Tick" functions for sensors, planners(FSM), blackboard
 public class AIAgent : MonoBehaviour, ICooperative
 {
+    public bool AgentException;
+    
     //private AISenses senses; //might not need this yet
     
     public AIBlackBoard blackBoard;
@@ -19,14 +21,18 @@ public class AIAgent : MonoBehaviour, ICooperative
     private void Awake()
     {
         SensorySystem = new SensorySystem(this);
-        RequestHandler = new RequestHandler(HerdRequestSystem, blackBoard); //!!Probably gonna cause an error
         
         blackBoard = new AIBlackBoard(this,
             GetComponent<FieldOfView>(), 
             GetComponent<Animator>(), 
             GetComponent<MovementModule>(),
-            GetComponent<BaseEnemy>(),
-            RequestHandler);
+            GetComponent<BaseEnemy>());
+    }
+
+    private void Start()
+    {
+        RequestHandler = new RequestHandler(HerdRequestSystem, blackBoard); 
+        Debug.Log(HerdRequestSystem);
     }
 
     private void Update()
@@ -36,5 +42,11 @@ public class AIAgent : MonoBehaviour, ICooperative
         
         blackBoard.Time = Time.time;
         blackBoard.DeltaTime = Time.deltaTime;
+
+        // !! Need to fix. There should be a more optimized way to set the request handler right
+        if (blackBoard.RequestHandler == null)
+        {
+            blackBoard.RequestHandler = RequestHandler;
+        }
     }
 }

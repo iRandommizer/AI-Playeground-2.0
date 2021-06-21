@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e881161afecae434dbd56d4e7c1174f0, type: 3}
   m_Name: BuffSpeed
   m_EditorClassIdentifier: 
-  _effectTitle: 7
+  _effectTitle: 8
   _parent: {fileID: 11400000, guid: d4aec52bec4a0e94580dac48965c5890, type: 2}

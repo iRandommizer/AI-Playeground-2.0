@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,11 +23,14 @@ public abstract class BaseEnemy : MonoBehaviour
     // Colliders
     [HideInInspector] public Collider2D mainCollider;
 
-    [SerializeField]protected Transform currentTarget; // Reference to the transform of the current target 
+    [SerializeField]public Transform currentTarget; // Reference to the transform of the current target 
     protected Vector2 lastPosOfTarget;
 
     // Data
     public MovementData movementData;
+    
+    //List
+    public Dictionary<EEffect, EnemyStateTypes> enemyStateTypeEffectPair = new Dictionary<EEffect, EnemyStateTypes>();
 
     //!! Temp:
     public bool exception = false;
@@ -53,7 +58,8 @@ public abstract class BaseEnemy : MonoBehaviour
         mFSM.Add((int)EnemyStateTypes.CHASING, new EnemyState(mFSM, EnemyStateTypes.CHASING, this));
         mFSM.Add((int)EnemyStateTypes.ATTACKING, new EnemyState(mFSM, EnemyStateTypes.ATTACKING, this));
         mFSM.Add((int)EnemyStateTypes.DAMAGED, new EnemyState(mFSM, EnemyStateTypes.DAMAGED, this));
-
+        mFSM.Add((int)EnemyStateTypes.SLOWABILITY, new EnemyState(mFSM, EnemyStateTypes.SLOWABILITY, this, EEffect.SlowAbility));
+        
         //Initializing all the different states in the delegates
         InitializeWanderingState();
         InitializeInvestigatingState();
@@ -61,6 +67,7 @@ public abstract class BaseEnemy : MonoBehaviour
         InitializeChasingState();
         InitializeAttackingState();
         InitializeDamagedState();
+        InitializeSlowAbilityState();
 
         SetState(EnemyStateTypes.WANDERING);
         #endregion
@@ -68,9 +75,21 @@ public abstract class BaseEnemy : MonoBehaviour
 
     private void Start()
     {
-        blackBoard = GetComponent<AIAgent>().blackBoard;
+        Invoke("Initialize", 0.5f);
     }
 
+    public void Initialize()
+    {
+        if (!exception) //!!
+        {
+            blackBoard = GetComponent<AIAgent>().blackBoard;
+            for (int i = 0; i < blackBoard.capableEffects.Count; i++)
+            {
+                Debug.Log(blackBoard.capableEffects[i]);
+            }
+        }
+    }
+    
     public virtual void Update()
     {
         mFSM.Update(); // Order of excecution matters
@@ -101,9 +120,10 @@ public abstract class BaseEnemy : MonoBehaviour
         float wanderSpeed = 25;
         if (exception)
         {
-            wanderSpeed = 50;
+            wanderSpeed = 35;
         }
         float randomYval = Random.Range(1, 1000);
+        
         EnemyState state = (EnemyState)mFSM.GetState((int)EnemyStateTypes.WANDERING);
 
         state.OnEnterDelegate += delegate ()
@@ -131,11 +151,12 @@ public abstract class BaseEnemy : MonoBehaviour
                 }
             }
 
-            currentTarget = LookForTarget("Player");
+            currentTarget = LookForTarget("Player"); //!!
             if(currentTarget != null)
             {
                 SetState(EnemyStateTypes.CHASING);
             }
+            
             //if (exception)
             //{
             //    if (Physics2D.OverlapCircleAll(transform.position, 3f, LayerMask.GetMask("Agents")).Length > 2)
@@ -279,6 +300,50 @@ public abstract class BaseEnemy : MonoBehaviour
         };
     }
 
+    public virtual void InitializeSlowAbilityState()
+    {
+        EnemyState state = (EnemyState)mFSM.GetState((int)EnemyStateTypes.SLOWABILITY);
+
+        // Lambda expression
+        state.OnEnterDelegate += () =>
+        {
+            Debug.Break();
+            Debug.Log("-- Used Slow Ability --");
+            movementModule.maxSpeed = 42;
+            movementModule.lookType = LookTypes.ATTARGET;
+            movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
+        };
+
+        state.OnUpdateDelegate += () =>
+        {
+            // if (blackBoard.RequestHandler.currentRequest == null || blackBoard.RequestHandler.currentRequest.status == RequestStatus.Success)
+            // {
+            //     Debug.Log("Transitioning to wandering state");
+            //     SetState(EnemyStateTypes.WANDERING);
+            //     return;
+            // }
+            
+            currentTarget = GameObject.FindWithTag("Player").transform;
+
+            if (currentTarget != null)
+            {
+                movementModule.CurrentTargetPos= lastPosOfTarget = ((Vector2)blackBoard.RequestHandler.currentRequest.Requester.transform.position  +
+                                                                    (Vector2)currentTarget.position + 
+                                                                    currentTarget.GetComponent<Rigidbody2D>().velocity * currentTarget.forward * 0.5f) / 2;
+                if (Physics2D.Linecast(transform.position,lastPosOfTarget,LayerMask.NameToLayer("Unwalkable")))
+                {
+                    Debug.Log("hit");
+                    PathRequestManager.RequestPath(transform.position, lastPosOfTarget, movementModule.OnPathFound);   
+                }
+                else
+                {
+                    movementModule.CurrentTargetPos = lastPosOfTarget;
+                }
+
+            }
+        };
+    }
+
     public void SetState(EnemyStateTypes type)
     {
         mFSM.SetCurrentState(mFSM.GetState((int)type));
@@ -303,14 +368,27 @@ public abstract class BaseEnemy : MonoBehaviour
         }
         return null;
     }
+
+    public EnemyStateTypes FindEnemyStateType(EEffect _effectEnum)
+    {
+        foreach (var d in enemyStateTypeEffectPair)
+        {
+            if (d.Key == _effectEnum)
+            {
+                return d.Value;
+            }
+        }
+        Debug.LogError("Dictionary Pair not found");
+        return EnemyStateTypes.NONE;
+    }
     #endregion
     
     void OnDrawGizmos()
     {
         //!!            
-        //Handles.Label(transform.position, System.Enum.GetName(typeof(EnemyStateTypes), currentEnemyState));
-        //Handles.color = Color.red;
-        //Handles.DrawSolidArc(lastPosOfTarget, Vector3.forward, Vector3.up, 360, 0.5f);
+        // Handles.Label(transform.position, System.Enum.GetName(typeof(EnemyStateTypes), currentEnemyState));
+        // Handles.color = Color.red;
+        // Handles.DrawSolidArc(lastPosOfTarget, Vector3.forward, Vector3.up, 360, 0.5f);
         //Handles.Label(lastPosOfTarget, "last seen");
         //Handles.color = Color.red;
         //Handles.DrawWireArc(movementModule.FrontPos, Vector3.forward, Vector3.up, 360, 0.5f);

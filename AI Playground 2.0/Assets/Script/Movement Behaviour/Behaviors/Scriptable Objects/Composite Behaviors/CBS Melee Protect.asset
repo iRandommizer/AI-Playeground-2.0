@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 312681a7157001c4ab116dea34bb163a, type: 3}
-  m_Name: CSB Melee Wander Runner
+  m_Name: CBS Melee Protect
   m_EditorClassIdentifier: 
   movementBehaviours:
   - {fileID: 11400000, guid: 37bbc4f520c831443a4f6fc1545e9940, type: 2}
-  - {fileID: 11400000, guid: adbdb1251850d6b48bba672c7a0873b0, type: 2}
-  - {fileID: 11400000, guid: 9663d4366d0dd394082822de1412c133, type: 2}
-  - {fileID: 11400000, guid: bd6b0763c723ed84eb4f8fcdbd6d9de8, type: 2}
-  - {fileID: 11400000, guid: 21708fe7a812ecd478342b8a8ea5e634, type: 2}
+  - {fileID: 11400000, guid: 31369457c1a1fe84ca18e27aea0bcd09, type: 2}
+  - {fileID: 11400000, guid: 31da2c396518c47458fcd55c967e4514, type: 2}
+  - {fileID: 11400000, guid: d7c33cdc5d6506d4daba50f96a40c650, type: 2}
+  - {fileID: 11400000, guid: f2a3f786adf009e409fcee5028ac2b85, type: 2}
   movementWeights:
+  - 0.3
   - 2
-  - 1
-  - 3
-  - 20
-  - 0
-  steeringDampening: 3
+  - 10
+  - 4
+  - 4
+  steeringDampening: 1.2

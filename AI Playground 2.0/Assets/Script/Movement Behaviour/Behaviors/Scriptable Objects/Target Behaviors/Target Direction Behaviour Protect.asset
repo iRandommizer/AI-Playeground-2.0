@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e881161afecae434dbd56d4e7c1174f0, type: 3}
-  m_Name: BlockageAbility
+  m_Script: {fileID: 11500000, guid: 3ef07299b8e17b54c9c5edcd4ae5e80d, type: 3}
+  m_Name: Target Direction Behaviour Protect
   m_EditorClassIdentifier: 
-  _effectTitle: 3
-  _parent: {fileID: 11400000, guid: f723c044dbde6e141b10ebb2377471c2, type: 2}
+  target: {x: -8.032532, y: -7.1433597}
+  radiusThreshold: 0.5

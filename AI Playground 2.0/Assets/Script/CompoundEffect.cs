@@ -9,9 +9,9 @@ public class CompoundEffect : Effect
 
     [SerializeField]protected List<Effect> _childEffects;
 
-    public List<EEffect> GetAllPrimativeEffects(List<EEffect> singularList = null)
+    public List<Effect> GetAllPrimativeEffects(List<Effect> singularList = null)
     {
-        List<EEffect> effects = new List<EEffect>();
+        List<Effect> effects = new List<Effect>();
         if (singularList != null)
         {
             effects = singularList;
@@ -20,11 +20,11 @@ public class CompoundEffect : Effect
         {
             if (childEffects[i] is  CompoundEffect ce)
             {
-                GetAllPrimativeEffects(effects);
+                ce.GetAllPrimativeEffects(effects);
                 continue;
             }
             
-            effects.Add(childEffects[i].EffectTitle);
+            effects.Add(childEffects[i]);
         }
         return effects;
         // Make a variable 

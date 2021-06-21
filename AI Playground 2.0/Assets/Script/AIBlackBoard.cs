@@ -9,7 +9,7 @@ public class AIBlackBoard : BaseBlackBoard // might have to further breakdown th
     public FieldOfView Fow { get; } //!! Need to change it to Sensory System to compensate for multiple types of senses
     public Animator Animator { get; }
     public AIAgent Agent { get; } // Reference to the agent
-    public RequestHandler RequestHandler { get; }
+    public RequestHandler RequestHandler { get; set; }
 
     public float Time { get; set; } // AI Context keeps track of it's own time
     public float DeltaTime { get; set; } // AI Context keeps track of it's own delta time
@@ -20,16 +20,16 @@ public class AIBlackBoard : BaseBlackBoard // might have to further breakdown th
     public List<AIEntityState> EligableAIEntityState = new List<AIEntityState>() {AIEntityState.HasMultipleAttackAmmo}; // Make data for it
     public List<AIEntityStatePair> EntityStatePair { get; set; } = new List<AIEntityStatePair>();
 
-    public AIBlackBoard(AIAgent agent, FieldOfView fow, Animator animator, MovementModule movementModule, BaseEnemy enemyDecider, RequestHandler requestHandler)
+    public AIBlackBoard(AIAgent agent, FieldOfView fow, Animator animator, MovementModule movementModule, BaseEnemy enemyDecider)
     {
         Agent = agent;
         Fow = fow;
         Animator = animator;
         MovementModule = movementModule;
         EnemyDecider = enemyDecider;
-        RequestHandler = requestHandler;
         
         Init();
+        
     }
 
     public bool FindResultOfState(AIEntityState _state)
@@ -62,7 +62,7 @@ public class AIBlackBoard : BaseBlackBoard // might have to further breakdown th
         foreach (var t in EligableAIEntityState)
         {
             EntityStatePair.Add(new AIEntityStatePair(t, false));
-            Debug.Log($"{t} has been initialised by {Agent.gameObject.name}");
+            //Debug.Log($"{t} has been initialised by {Agent.gameObject.name}");
         }
     }
 }

@@ -83,7 +83,13 @@ public class MovementModule : MonoBehaviour
         }
         else if(look == LookTypes.ATTARGET)
         {
-            Vector2 lookDir = (CurrentTargetPos - (Vector2)transform.position).normalized;
+            Vector2 lookDir = Vector2.zero; 
+            if (GetComponent<BaseEnemy>().currentTarget != null)
+            {
+                lookDir = ((Vector2)GetComponent<BaseEnemy>().currentTarget.transform.position - (Vector2) transform.position)
+                    .normalized;
+            }//!!
+            else lookDir = (CurrentTargetPos - (Vector2)transform.position).normalized;
             RotateTo(lookDir);
         }
 

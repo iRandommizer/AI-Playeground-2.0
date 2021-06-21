@@ -21,20 +21,30 @@ public class RequestHandler
 
     public void MakeRequest(Effect effect, AIEntityStatePair trigger)
     {
+        if (assignedRequestSystem == null || blackBoard == null || blackBoard.Agent== null)
+        {
+            Debug.Log(assignedRequestSystem);
+            Debug.Log(blackBoard);
+            Debug.Log(blackBoard.Agent);
+        }
         assignedRequestSystem.CheckRequestValidity(blackBoard.Agent, effect, trigger);
     }
 
-    public void AskForRequest(List<EEffect> effects)
+    public void AskForRequest(List<EEffect> effects, AIAgent accepter)
     {
         if (currentRequest != null)
         {
-            Debug.Log($"Currently occupied with another request");
+            // Debug.Log($"Currently occupied with another request");
+            // Debug.Log(accepter);
         }
         else
         {
-            currentRequest = assignedRequestSystem.LookForCompatibleRequest(effects);
+            if (assignedRequestSystem == null) return;
+            
+            currentRequest = assignedRequestSystem.LookForCompatibleRequest(effects, accepter);
             if (currentRequest != null)
             {
+                Debug.Log(currentRequest);
                 currentRequest.RequestTaken(blackBoard);
             }
         }
@@ -43,15 +53,27 @@ public class RequestHandler
     public void DiscardRequest(Request request)
     {
         assignedRequestSystem.DiscardRequest(request);
+        currentRequest = null;
+        Debug.Log(request + " is discarded");
     }
 
     public void Tick()
     {
+        if (blackBoard.Agent.AgentException)
+        {
+                AskForRequest(blackBoard.capableEffects, blackBoard.Agent);
+        }
         if (currentRequest == null) return;
         currentRequest.UpdateRequest(blackBoard);
-        if (currentRequest.status == RequestStatus.Failed || currentRequest.status == RequestStatus.Success)
+        if (currentRequest.status == RequestStatus.Failed)
         {
+            Debug.Log("failed");
             DiscardRequest(currentRequest);
         }
+        // if(currentRequest.status == RequestStatus.Success)
+        // {
+        //         Debug.Log("success");
+        //     DiscardRequest(currentRequest);
+        // }
     }
 }
