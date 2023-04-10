@@ -45,6 +45,7 @@ public class RequestHandler
             if (currentRequest != null)
             {
                 Debug.Log(currentRequest);
+                Debug.Log(currentRequest.DesiredEffect);
                 currentRequest.RequestTaken(blackBoard);
             }
         }

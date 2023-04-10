@@ -17,4 +17,4 @@ MonoBehaviour:
   numOfRays: 12
   avoidanceLayer:
     serializedVersion: 2
-    m_Bits: 6144
+    m_Bits: 2048

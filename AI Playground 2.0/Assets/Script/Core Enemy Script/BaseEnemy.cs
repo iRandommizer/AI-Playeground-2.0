@@ -120,7 +120,7 @@ public abstract class BaseEnemy : MonoBehaviour
         float wanderSpeed = 25;
         if (exception)
         {
-            wanderSpeed = 35;
+            wanderSpeed = 40;
         }
         float randomYval = Random.Range(1, 1000);
         
@@ -386,7 +386,7 @@ public abstract class BaseEnemy : MonoBehaviour
     void OnDrawGizmos()
     {
         //!!            
-        // Handles.Label(transform.position, System.Enum.GetName(typeof(EnemyStateTypes), currentEnemyState));
+        Handles.Label(transform.position, System.Enum.GetName(typeof(EnemyStateTypes), currentEnemyState));
         // Handles.color = Color.red;
         // Handles.DrawSolidArc(lastPosOfTarget, Vector3.forward, Vector3.up, 360, 0.5f);
         //Handles.Label(lastPosOfTarget, "last seen");
