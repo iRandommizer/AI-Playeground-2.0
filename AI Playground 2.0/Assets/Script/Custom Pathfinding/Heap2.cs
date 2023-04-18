@@ -18,20 +18,24 @@ public class Heap2<T> where T : IHeapItem2<T>
     {
         item.HeapIndex = totalIndexCount;
 
+        listOfItems[totalIndexCount] = item;
+
         SortUp(item);
  
         totalIndexCount++;
+
+        Debug.Log("New Item:" + item.ToString());
     }
 
     // Return the root node value then resort the whole tree again 
     public T Dequeue() // We'll always dequeue the root node so no need to pass an arguement 
     {
-        T lastItem = listOfItems[totalIndexCount];
-        T rootItem = listOfItems[0];
-        listOfItems[0] = lastItem;
-        SortDown(lastItem);
+        T firstItem = listOfItems[0];
         totalIndexCount--;
-        return rootItem;
+        listOfItems[0] = listOfItems[totalIndexCount];
+        listOfItems[0].HeapIndex = 0;
+        SortDown(listOfItems[0]);
+        return firstItem;        
     }
 
     public void SortUp(T item)
@@ -46,16 +50,23 @@ public class Heap2<T> where T : IHeapItem2<T>
 
     public void SortDown(T item)
     {
-        //Get children
+        if (item.HeapIndex * 2 + 1 >= listOfItems.Length) return;
         T childItemA = listOfItems[(item.HeapIndex * 2) + 1];
-        T childItemB = listOfItems[(item.HeapIndex * 2) + 2];
+        T childItemB = default;
+        if (item.HeapIndex * 2 + 2 <= listOfItems.Length)
+        {
+            childItemB = listOfItems[(item.HeapIndex * 2) + 2];
+        }
+
         //Get Highest Child
         T HighestItem = childItemA.CompareTo(childItemB) >= 0 ? childItemA : childItemB;
         //Set up the recursive portion of the code and the swap
         if(item.CompareTo(HighestItem) < 0)
         {
             Swap(item, HighestItem);
-            SortDown(item);
+            {
+                SortDown(item);
+            }
         }
     }
 

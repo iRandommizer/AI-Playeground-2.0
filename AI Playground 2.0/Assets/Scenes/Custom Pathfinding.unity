@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d56600ad2d840c4e8f225473bb708b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumOfTestScripts: 20
+  NumOfTestScripts: 7
   min: 0
   max: 20
 --- !u!4 &1817544778
