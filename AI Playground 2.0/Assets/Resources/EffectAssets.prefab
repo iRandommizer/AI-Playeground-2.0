@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &26785166946811497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2145523672498856017}
+  - component: {fileID: 2489435173119092584}
+  m_Layer: 0
+  m_Name: EffectAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2145523672498856017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26785166946811497}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2489435173119092584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26785166946811497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74da42955ec8c0047af9da4e7b75c048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlockageAbility: {fileID: 11400000, guid: 9957516a30a1ef740a1e75937cf2c74a, type: 2}
+  BuffSpeed: {fileID: 11400000, guid: 135826523d9f69a4a82284e7fee26baf, type: 2}
+  PressureTargetAway: {fileID: 11400000, guid: ab34e56d6ba97d3468d95981435db30c, type: 2}
+  ProjectilePressure: {fileID: 11400000, guid: 4c79a18162ccaeb4995a38741ea795a5, type: 2}
+  SlowAbility: {fileID: 11400000, guid: 19ef1ca80135e674e8ce8bb777f3d6b3, type: 2}
+  StunTarget: {fileID: 11400000, guid: c8fbbae9e5755014b956b07d2d60dee0, type: 2}
+  BlockTarget: {fileID: 11400000, guid: f723c044dbde6e141b10ebb2377471c2, type: 2}
+  FasterThanPlayer: {fileID: 11400000, guid: d4aec52bec4a0e94580dac48965c5890, type: 2}
+  SlowTarget: {fileID: 11400000, guid: 933999bc770a4b541a2317039230244f, type: 2}

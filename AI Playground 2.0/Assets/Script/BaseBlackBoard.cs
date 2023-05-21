@@ -1,5 +1,6 @@
-﻿public abstract class BaseBlackBoard : IBlackBoard
+﻿using System.Collections.Generic;
+
+public abstract class BaseBlackBoard : IBlackBoard
 {
     public bool IsInitialized { get; protected set; }
-    public IFactory Factory { get; set; }   
 }

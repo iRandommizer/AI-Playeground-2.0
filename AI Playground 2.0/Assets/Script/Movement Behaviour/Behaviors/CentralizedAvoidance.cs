@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Movement/Behaviour/CentralizedAvoidance")]
 public class CentralizedAvoidance : MovementBehaviour
 {
+    public float tempMultiplyer = 1;
     public float avoidanceDistance = 3;
     public int numOfRays = 8;
     public LayerMask avoidanceLayer;
@@ -41,7 +42,7 @@ public class CentralizedAvoidance : MovementBehaviour
             }
         }
         //DrawArrow.ForDebug(movementModule.transform.position, undesiredDirection.normalized / t / t, Color.red);
-        return (-undesiredDirection.normalized + movementModule.desiredDirection.normalized) / t / (t * 8 * ((movementModule.maxSpeed - movementModule.rb.velocity.magnitude) / movementModule.maxSpeed));
+        return (tempMultiplyer * -undesiredDirection.normalized + movementModule.desiredDirection.normalized) / t / (t * 8 * ((movementModule.maxSpeed - movementModule.rb.velocity.magnitude) / movementModule.maxSpeed));
     }
 
     public Vector2 RotateBy(Vector2 v, float a, bool bUseRadians = false)

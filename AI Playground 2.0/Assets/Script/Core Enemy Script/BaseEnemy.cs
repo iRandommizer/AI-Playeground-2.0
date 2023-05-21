@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
-using UnityEngine.SceneManagement;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
@@ -13,8 +13,9 @@ public abstract class BaseEnemy : MonoBehaviour
 
     // External Side Componenets
     protected MovementModule movementModule; // Reference to the movement module of the enemy 
+    protected AIBlackBoard blackBoard;
     protected FieldOfView fow;
-    protected AttackController attackController;
+    protected AttackModule attackModule;
 
     // Physics
     [HideInInspector] public Rigidbody2D rb;
@@ -27,6 +28,9 @@ public abstract class BaseEnemy : MonoBehaviour
 
     // Data
     public MovementData movementData;
+    
+    //List
+    public Dictionary<EEffect, EnemyStateTypes> enemyStateTypeEffectPair = new Dictionary<EEffect, EnemyStateTypes>();
 
     //!! Temp:
     public bool exception = false;
@@ -35,12 +39,15 @@ public abstract class BaseEnemy : MonoBehaviour
     #region Properties
 
     #endregion
+
+    #region Monobehaviour
+
     public virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         movementModule = GetComponent<MovementModule>();
         fow = GetComponent<FieldOfView>();
-        attackController = GetComponent<AttackController>();
+        attackModule = GetComponent<AttackModule>();
 
         #region FSM Region
         mFSM = new FSM();
@@ -51,7 +58,8 @@ public abstract class BaseEnemy : MonoBehaviour
         mFSM.Add((int)EnemyStateTypes.CHASING, new EnemyState(mFSM, EnemyStateTypes.CHASING, this));
         mFSM.Add((int)EnemyStateTypes.ATTACKING, new EnemyState(mFSM, EnemyStateTypes.ATTACKING, this));
         mFSM.Add((int)EnemyStateTypes.DAMAGED, new EnemyState(mFSM, EnemyStateTypes.DAMAGED, this));
-
+        mFSM.Add((int)EnemyStateTypes.SLOWABILITY, new EnemyState(mFSM, EnemyStateTypes.SLOWABILITY, this, EEffect.SlowAbility));
+        
         //Initializing all the different states in the delegates
         InitializeWanderingState();
         InitializeInvestigatingState();
@@ -59,15 +67,34 @@ public abstract class BaseEnemy : MonoBehaviour
         InitializeChasingState();
         InitializeAttackingState();
         InitializeDamagedState();
+        InitializeSlowAbilityState();
 
         SetState(EnemyStateTypes.WANDERING);
         #endregion
     }
 
+    private void Start()
+    {
+        Invoke("Initialize", 0.5f);
+    }
+
+    public void Initialize()
+    {
+        if (!exception) //!!
+        {
+            blackBoard = GetComponent<AIAgent>().blackBoard;
+            for (int i = 0; i < blackBoard.capableEffects.Count; i++)
+            {
+                Debug.Log(blackBoard.capableEffects[i]);
+            }
+        }
+    }
+    
     public virtual void Update()
     {
-        mFSM.Update();
-        //!!TEMP
+        mFSM.Update(); // Order of excecution matters
+        #region Debug Tools
+
         if (Input.GetMouseButtonDown(0))
         {
             movementModule.CurrentTargetPos = Vector2.zero;
@@ -77,10 +104,7 @@ public abstract class BaseEnemy : MonoBehaviour
             SetState(EnemyStateTypes.WANDERING);
         }
 
-        if (exception)
-        {
-            currentTarget = this.transform;
-        }
+        #endregion
     }
 
     public virtual void FixedUpdate()
@@ -88,23 +112,26 @@ public abstract class BaseEnemy : MonoBehaviour
         mFSM.FixedUpdate();
     }
 
+    #endregion
+
     #region State Functions
     public virtual void InitializeWanderingState()
     {
-        float wanderSpeed = 60;
+        float wanderSpeed = 25;
         if (exception)
         {
-            wanderSpeed = 90;
+            wanderSpeed = 40;
         }
         float randomYval = Random.Range(1, 1000);
+        
         EnemyState state = (EnemyState)mFSM.GetState((int)EnemyStateTypes.WANDERING);
 
         state.OnEnterDelegate += delegate ()
         {
-        movementModule.lookType = LookTypes.INDIRECTION;
-        movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
-        movementModule.CurrentTargetPos = lastPosOfTarget;
-        movementModule.maxSpeed = wanderSpeed;            
+            movementModule.lookType = LookTypes.INDIRECTION;
+            movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
+            movementModule.CurrentTargetPos = lastPosOfTarget;
+            movementModule.maxSpeed = wanderSpeed;            
         };
 
         state.OnUpdateDelegate += delegate ()
@@ -118,17 +145,18 @@ public abstract class BaseEnemy : MonoBehaviour
             else
             {
                 movementModule.maxSpeed = wanderSpeed * noiseVal;
-                //if (exception)
-                //{
-                //    movementModule.maxSpeed = wanderSpeed * (noiseVal / 4 + 0.75f);
-                //}
+                if (exception)
+                {
+                    movementModule.maxSpeed = wanderSpeed * (noiseVal / 4 + 0.75f);
+                }
             }
 
-            currentTarget = LookForTarget("Player");
+            currentTarget = LookForTarget("Player"); //!!
             if(currentTarget != null)
             {
                 SetState(EnemyStateTypes.CHASING);
             }
+            
             //if (exception)
             //{
             //    if (Physics2D.OverlapCircleAll(transform.position, 3f, LayerMask.GetMask("Agents")).Length > 2)
@@ -149,8 +177,9 @@ public abstract class BaseEnemy : MonoBehaviour
 
         state.OnEnterDelegate += delegate ()
         {
+            movementModule.StopCoroutine("FollowPath");
             movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
-            movementModule.maxSpeed = 60;
+            movementModule.maxSpeed = 45;
             PathRequestManager.RequestPath(movementModule.BackPos, lastPosOfTarget, movementModule.OnPathFound);
         };
 
@@ -167,7 +196,7 @@ public abstract class BaseEnemy : MonoBehaviour
             // If MovementModule Target != null, look for it's position
             if (currentTarget != null)
             {
-                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().FrontPos;
+                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().PosForwardx3;
                 lastPosOfTarget = (Vector2)currentTarget.position + currentTarget.GetComponent<Rigidbody2D>().velocity.normalized * currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude / 4;
             }
         };
@@ -195,7 +224,7 @@ public abstract class BaseEnemy : MonoBehaviour
         state.OnEnterDelegate += delegate ()
         {
             movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
-            movementModule.maxSpeed = 55;
+            movementModule.maxSpeed = 40;
         };
 
         state.OnUpdateDelegate += delegate ()
@@ -214,14 +243,14 @@ public abstract class BaseEnemy : MonoBehaviour
             if (currentTarget != null)
             {
 
-                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().FrontPos;
+                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().PosForwardx2;
                 lastPosOfTarget = (Vector2)currentTarget.position + currentTarget.GetComponent<Rigidbody2D>().velocity.normalized * currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude / 4;
             }
 
-            // if (currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) < 6 && attackController.readyToFight)
-            // {
-            //     SetState(EnemyStateTypes.ATTACKING);
-            // }
+            if (currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) < 6 && attackModule.readyToFight)
+            {
+                SetState(EnemyStateTypes.ATTACKING);
+            }
         };
     }
 
@@ -236,8 +265,8 @@ public abstract class BaseEnemy : MonoBehaviour
         {
             movementModule.lookType = LookTypes.ATTARGET;
             movementModule.maxSpeed = 0;
-            attackController.PlayAnim("Enemy Attack");
-            animDur = attackController.attackAnim.GetCurrentAnimatorStateInfo(0).length;
+            attackModule.PlayAnim("Enemy Attack");
+            animDur = attackModule.attackAnim.GetCurrentAnimatorStateInfo(0).length;
         };
 
         state.OnUpdateDelegate += () => // Lambda Expression
@@ -254,8 +283,8 @@ public abstract class BaseEnemy : MonoBehaviour
 
         state.OnExitDelegate += delegate ()
         {
-            attackController.readyToFight = false;
-            attackController.attackCooldownCounter = 0;
+            attackModule.readyToFight = false;
+            attackModule.attackCooldownCounter = 0;
             movementModule.lookType = LookTypes.INDIRECTION;
         };
     }
@@ -268,6 +297,50 @@ public abstract class BaseEnemy : MonoBehaviour
         state.OnEnterDelegate += () =>
         {
 
+        };
+    }
+
+    public virtual void InitializeSlowAbilityState()
+    {
+        EnemyState state = (EnemyState)mFSM.GetState((int)EnemyStateTypes.SLOWABILITY);
+
+        // Lambda expression
+        state.OnEnterDelegate += () =>
+        {
+            Debug.Break();
+            Debug.Log("-- Used Slow Ability --");
+            movementModule.maxSpeed = 42;
+            movementModule.lookType = LookTypes.ATTARGET;
+            movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
+        };
+
+        state.OnUpdateDelegate += () =>
+        {
+            // if (blackBoard.RequestHandler.currentRequest == null || blackBoard.RequestHandler.currentRequest.status == RequestStatus.Success)
+            // {
+            //     Debug.Log("Transitioning to wandering state");
+            //     SetState(EnemyStateTypes.WANDERING);
+            //     return;
+            // }
+            
+            currentTarget = GameObject.FindWithTag("Player").transform;
+
+            if (currentTarget != null)
+            {
+                movementModule.CurrentTargetPos= lastPosOfTarget = ((Vector2)blackBoard.RequestHandler.currentRequest.Requester.transform.position  +
+                                                                    (Vector2)currentTarget.position + 
+                                                                    currentTarget.GetComponent<Rigidbody2D>().velocity * currentTarget.forward * 0.5f) / 2;
+                if (Physics2D.Linecast(transform.position,lastPosOfTarget,LayerMask.NameToLayer("Unwalkable")))
+                {
+                    Debug.Log("hit");
+                    PathRequestManager.RequestPath(transform.position, lastPosOfTarget, movementModule.OnPathFound);   
+                }
+                else
+                {
+                    movementModule.CurrentTargetPos = lastPosOfTarget;
+                }
+
+            }
         };
     }
 
@@ -295,27 +368,27 @@ public abstract class BaseEnemy : MonoBehaviour
         }
         return null;
     }
-    #endregion
 
-    //!!
-    private void OnCollisionEnter2D(Collision2D collision)
+    public EnemyStateTypes FindEnemyStateType(EEffect _effectEnum)
     {
-        if (exception)
+        foreach (var d in enemyStateTypeEffectPair)
         {
-            //if(collision.gameObject.GetComponent<BaseEnemy>() != null)
-            //{
-            //    Destroy(this.gameObject);
-            //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            //}
+            if (d.Key == _effectEnum)
+            {
+                return d.Value;
+            }
         }
+        Debug.LogError("Dictionary Pair not found");
+        return EnemyStateTypes.NONE;
     }
-
+    #endregion
+    
     void OnDrawGizmos()
     {
         //!!            
-        //Handles.Label(transform.position, System.Enum.GetName(typeof(EnemyStateTypes), currentEnemyState));
-        //Handles.color = Color.red;
-        //Handles.DrawSolidArc(lastPosOfTarget, Vector3.forward, Vector3.up, 360, 0.5f);
+        Handles.Label(transform.position, System.Enum.GetName(typeof(EnemyStateTypes), currentEnemyState));
+        // Handles.color = Color.red;
+        // Handles.DrawSolidArc(lastPosOfTarget, Vector3.forward, Vector3.up, 360, 0.5f);
         //Handles.Label(lastPosOfTarget, "last seen");
         //Handles.color = Color.red;
         //Handles.DrawWireArc(movementModule.FrontPos, Vector3.forward, Vector3.up, 360, 0.5f);

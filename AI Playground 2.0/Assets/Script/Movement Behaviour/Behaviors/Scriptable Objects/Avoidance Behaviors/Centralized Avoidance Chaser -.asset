@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd37fec1a9f3f52488de0b0062746e98, type: 3}
   m_Name: Centralized Avoidance Chaser -
   m_EditorClassIdentifier: 
-  avoidanceDistance: 8
+  tempMultiplyer: 1
+  avoidanceDistance: 15
   numOfRays: 12
   avoidanceLayer:
     serializedVersion: 2

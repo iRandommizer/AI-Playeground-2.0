@@ -1,6 +1,6 @@
-﻿public interface IBlackBoard 
+﻿using System.Collections.Generic;
+
+public interface IBlackBoard 
 {
     bool IsInitialized { get; }
-
-    IFactory Factory { get; set; }
 }

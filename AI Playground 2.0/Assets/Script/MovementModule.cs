@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class MovementModule : MonoBehaviour
 {
@@ -13,33 +10,37 @@ public class MovementModule : MonoBehaviour
     public bool indicators = false;
     public bool playerControlled = false;
     #endregion
-
-    [Header("Actual")]
+    
+    [Header("<-Velocity stuff->")]
     public float maxSpeed = 4;
-    public float steerStrength { get { return maxSpeed * 5; } }
+    public float steerStrength => maxSpeed * 6;
 
+    [Header("<-Other Components->")]
     public Rigidbody2D rb;
-
-    Vector2 velocity;
-    public Vector2 desiredDirection;
-
     public MovementBehaviour mb;
     private PlayerController playerController;
-
+    
+    [Header("<-Vectors->")]
+    private Vector2 velocity;
+    public Vector2 desiredDirection;
     private Vector2 currentTargetPos;
     public Vector2 CurrentTargetPos { get { return currentTargetPos;} set { /*Debug.Log("value being changed to" + value);*/ currentTargetPos = value; } }
+    
+    [Header("<-Enums->")]
     public LookTypes lookType;
 
-    //to be deleted
-    public BaseEnemy baseEnemyTemp;
-    public Vector2 tempPos;
-    public float cooldown = 1f;
-    
     Path path;
 
-    #region Properties
-    public Vector2 FrontPos { get { if (rb != null) return (Vector2)transform.position + rb.velocity.normalized * rb.velocity.magnitude * 0.08f; else return transform.position; } }
-    public Vector2 BackPos { get { if (rb != null) return (Vector2)transform.position - rb.velocity.normalized * rb.velocity.magnitude * 0.08f; else return transform.position; } }
+    #region Helper Expressions
+    public Vector2 BackPos { get { if (rb != null) return (Vector2)transform.position - rb.velocity.normalized * rb.velocity.magnitude * 0.08f; else return transform.position; } } public Vector2 Postion => transform.position;
+    public Vector2 Forward => transform.up;
+    public Rigidbody2D RB => rb;
+    public Vector2 Velocity => RB.velocity;
+    public float Magnitude => Velocity.magnitude;
+    public Vector2 PosForwardx1 => Postion + (Forward * Magnitude * 0.02f);
+    public Vector2 PosForwardx2 => Postion + (Forward * Magnitude * 0.04f);
+    public Vector2 PosForwardx3 => Postion + (Forward * Magnitude * 0.06f);
+    public Vector2 PosForwardx4 => Postion + (Forward * Magnitude * 0.1f);
     #endregion
 
     private void Awake()
@@ -49,8 +50,6 @@ public class MovementModule : MonoBehaviour
         {
             playerController = GetComponent<PlayerController>();
         }
-
-        baseEnemyTemp = GetComponent<BaseEnemy>();
     }
 
     private void FixedUpdate()
@@ -72,25 +71,6 @@ public class MovementModule : MonoBehaviour
         #endregion
     }
 
-    private void LateUpdate()
-    {
-        if (cooldown > 0)
-        {
-            cooldown -= Time.deltaTime;
-        }
-        else
-        {
-            if (!baseEnemyTemp.exception && baseEnemyTemp.currentTarget != null)
-            {
-                currentTargetPos = baseEnemyTemp.currentTarget.GetComponent<MovementModule>().tempPos;
-                PathRequestManager.RequestPath(transform.position, currentTargetPos, OnPathFound);
-            }
-
-            cooldown = 0.1f;
-        }
-
-    }
-
     #region Movement Functios
     private void Look(LookTypes look)
     {
@@ -103,7 +83,13 @@ public class MovementModule : MonoBehaviour
         }
         else if(look == LookTypes.ATTARGET)
         {
-            Vector2 lookDir = (CurrentTargetPos - (Vector2)transform.position).normalized;
+            Vector2 lookDir = Vector2.zero; 
+            if (GetComponent<BaseEnemy>().currentTarget != null)
+            {
+                lookDir = ((Vector2)GetComponent<BaseEnemy>().currentTarget.transform.position - (Vector2) transform.position)
+                    .normalized;
+            }//!!
+            else lookDir = (CurrentTargetPos - (Vector2)transform.position).normalized;
             RotateTo(lookDir);
         }
 
@@ -124,16 +110,16 @@ public class MovementModule : MonoBehaviour
         Vector2 desiredSteeringForce = (desiredVel - velocity) * steerStrength;
         Vector2 acceleration = Vector2.ClampMagnitude(desiredSteeringForce, steerStrength) / 1;
 
-        velocity = Vector2.ClampMagnitude(velocity + acceleration * Time.deltaTime, maxSpeed);
+        velocity = Vector2.ClampMagnitude(velocity + acceleration * Time.fixedDeltaTime, maxSpeed);
 
-        rb.velocity = velocity * Time.deltaTime * maxSpeed;
+        rb.velocity = velocity * (Time.fixedDeltaTime * maxSpeed);
     } 
 
     private void RotateTo(Vector2 lookDirection)
     {
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90;
         //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), (Time.deltaTime * rb.velocity.magnitude) + (Time.deltaTime * 15));
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), (Time.fixedDeltaTime * rb.velocity.magnitude) + (Time.fixedDeltaTime * 15));
     }
     #endregion
 
@@ -190,7 +176,7 @@ public class MovementModule : MonoBehaviour
         }
 
         //Handles.color = Color.black;
-        //Handles.DrawSolidArc(CurrentTargetPos, Vector3.forward, Vector3.up, 360, 0.5f);
+        //Handles.DrawSolidArc(PosForwardx4, Vector3.forward, Vector3.up, 360, 0.5f);
     }
 }
 

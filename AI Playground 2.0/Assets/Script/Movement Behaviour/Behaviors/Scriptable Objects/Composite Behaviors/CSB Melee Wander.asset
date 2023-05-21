@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a3b2d604e7d910c4799bd6e510a2bfa0, type: 2}
   movementWeights:
   - 0.1
-  - 0.001
+  - 1
   - 10
   - 1
   steeringDampening: 4

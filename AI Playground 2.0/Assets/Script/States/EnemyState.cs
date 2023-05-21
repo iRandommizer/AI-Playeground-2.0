@@ -1,16 +1,33 @@
-﻿public class EnemyState : State
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyState : State
 {
     protected BaseEnemy mBaseEnemy; // Reference to the BaseEnemy script
     private EnemyStateTypes mEnemyStateType; // The enum which will hold the key values for the FSM
 
     public EnemyStateTypes EnemyStateType { get { return mEnemyStateType; } } // Property which allows other classes to get reference of the state type
 
+    private EEffect mEffect;
+    public EEffect Effect { get { return mEffect; } }
+
     // Constructor for the state to get the references for the BaseEnemy and its state type
     // !! Why is the BaseEnemy script Needed here??
-    public EnemyState(FSM fsm, EnemyStateTypes type, BaseEnemy baseEnemy) : base(fsm)
+    public EnemyState(FSM fsm, EnemyStateTypes type, BaseEnemy baseEnemy, EEffect effect = EEffect.None) : base(fsm)
     {
         mBaseEnemy = baseEnemy;
         mEnemyStateType = type;
+        mEffect = effect;
+        
+        //Initialize all the effects the AI is capable of
+        if (effect != EEffect.None)
+        {
+            baseEnemy.enemyStateTypeEffectPair.Add(effect, type);
+            if (!mBaseEnemy.transform.CompareTag("Player")) //!!
+            {
+                baseEnemy.GetComponent<AIAgent>().blackBoard.capableEffects.Add(effect);
+            }
+        }
     }
 
     public delegate void StateDelegate();
@@ -55,5 +72,8 @@ public enum EnemyStateTypes
     TAUNTING,
     DODGING,
     DEFENDING,
-    DAMAGED
+    DAMAGED,
+    SLOWABILITY,
+    NONE
 }
+    

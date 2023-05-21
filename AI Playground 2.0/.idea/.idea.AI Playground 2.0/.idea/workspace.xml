@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="73f3441a-fbcd-4108-941c-b6a112ce44e9" name="Default Changelist" comment="" />
+    <list default="true" id="73f3441a-fbcd-4108-941c-b6a112ce44e9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AI Playground 2.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AI Playground 2.0/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Core Enemy Script/BaseEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Core Enemy Script/BaseEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/RequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/RequestHandler.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,12 +17,84 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Script/AIEntityState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/ISensor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A1AC446D-F41C-4A67-BECF-2F8317DC1792/8d/c3826549/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/TargetDirectionDamping.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/HerdManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Effect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/RequestHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A1AC446D-F41C-4A67-BECF-2F8317DC1792/54/b9df8d32/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/EEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/EffectAssets.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/CompoundEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/ICooperative.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/SensorySystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CAFB29D5-2338-47FB-B4ED-CF8D7C32B1E3/ef/8424323f/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/HerdAIBlackBoard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CAFB29D5-2338-47FB-B4ED-CF8D7C32B1E3/6c/09fe7471/Single.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/IEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Request.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A1AC446D-F41C-4A67-BECF-2F8317DC1792/b1/27772d36/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Script/MovementModule.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/AvoidanceBehaviour.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Conditions/ExceptionCondition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Temp/TempStrategyPlanner.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/MovementData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Strategy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/EStrategy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/IConsequentialEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/PrimativeEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/ICompoundEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effects/Primative/TestEffects.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Pathfinding/Path.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/ISensor.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/AIEntityStates.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/AIEntityStatePair.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/IBlackBoard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/BaseBlackBoard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/SensorySystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/EEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/IHerdMember.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/ICooperative.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/IEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effects/Compound/BlockTargetEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effects/Primative/BlockageAbilityEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effects/Primative/StunTargetEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effects/Primative/SlowAbilityEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effects/Primative/ProjectilePressureEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effects/Primative/PressureTargetAwayEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Effects/Primative/BuffSpeedEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/EffectAssets.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/HerdAIBlackBoard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/AIEntityState.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/AttackModule.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/AIBlackBoard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/CompoundEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/States/EnemyState.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/TargetDirectionDamping.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/TargetDirectionBehaviour.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/MovementModule.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Request.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Movement Behaviour/Behaviors/CentralizedAvoidance.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/HerdManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Core Enemy Script/MeleeEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/AIAgent.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/RequestSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Core Enemy Script/BaseEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/RequestHandler.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1tqHfRbpr3ctWcFFLhu4SUU9IM1" />
@@ -29,6 +108,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.C#" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -61,7 +141,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623489804461</updated>
-      <workItem from="1623489808665" duration="2278000" />
+      <workItem from="1623489808665" duration="7473000" />
+      <workItem from="1623557964703" duration="14425000" />
+      <workItem from="1623749977370" duration="4893000" />
+      <workItem from="1623805826245" duration="14187000" />
+      <workItem from="1624076598284" duration="22299000" />
+      <workItem from="1631951877167" duration="771000" />
+      <workItem from="1641617787994" duration="95000" />
+      <workItem from="1641618074561" duration="789000" />
     </task>
     <servers />
   </component>
@@ -80,8 +167,13 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

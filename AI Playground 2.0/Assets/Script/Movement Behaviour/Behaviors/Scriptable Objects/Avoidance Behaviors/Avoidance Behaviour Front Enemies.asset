@@ -17,4 +17,4 @@ MonoBehaviour:
   detectionAngelSpread: 240
   avoidanceLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 6144

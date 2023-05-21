@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312681a7157001c4ab116dea34bb163a, type: 3}
+  m_Name: CBS Runner
+  m_EditorClassIdentifier: 
+  movementBehaviours:
+  - {fileID: 11400000, guid: 37bbc4f520c831443a4f6fc1545e9940, type: 2}
+  - {fileID: 11400000, guid: bd6b0763c723ed84eb4f8fcdbd6d9de8, type: 2}
+  - {fileID: 11400000, guid: 9663d4366d0dd394082822de1412c133, type: 2}
+  movementWeights:
+  - 0
+  - 0
+  - 0
+  steeringDampening: 3

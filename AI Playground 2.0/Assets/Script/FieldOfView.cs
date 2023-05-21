@@ -78,22 +78,22 @@ public class FieldOfView : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        //Handles.color = Color.black;    
-        //Handles.DrawWireArc(transform.position, Vector3.forward, Vector3.up, 360, viewRadius);
-        //Vector3 viewAngleA = DirectionFromAngle(-viewAngle / 2, false);
-        //Vector3 viewAngleB = DirectionFromAngle(viewAngle / 2, false);
+        Handles.color = Color.black;
+        Handles.DrawWireArc(transform.position, Vector3.forward, Vector3.up, 360, viewRadius);
+        Vector3 viewAngleA = DirectionFromAngle(-viewAngle / 2, false);
+        Vector3 viewAngleB = DirectionFromAngle(viewAngle / 2, false);
 
-        //Handles.DrawLine(transform.position, transform.position + viewAngleA * viewRadius);
-        //Handles.DrawLine(transform.position, transform.position + viewAngleB * viewRadius);
+        Handles.DrawLine(transform.position, transform.position + viewAngleA * viewRadius);
+        Handles.DrawLine(transform.position, transform.position + viewAngleB * viewRadius);
 
-        //if (!GetComponent<BaseEnemy>().exception)
-        //{
-        //    Handles.color = Color.red;
-        //    foreach (Transform visibleTarget in visibleTarget)
-        //    {
-        //        Handles.DrawLine(transform.position, visibleTarget.position);
-        //    }
-        //}
+        if (!GetComponent<BaseEnemy>().exception)
+        {
+            Handles.color = Color.red;
+            foreach (Transform visibleTarget in visibleTarget)
+            {
+                Handles.DrawLine(transform.position, visibleTarget.position);
+            }
+        }
 
     }
 }

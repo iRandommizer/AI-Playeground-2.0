@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Target Direction Behaviour Wander Temp
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0}
-  radiusThreshold: 5
+  radiusThreshold: 1

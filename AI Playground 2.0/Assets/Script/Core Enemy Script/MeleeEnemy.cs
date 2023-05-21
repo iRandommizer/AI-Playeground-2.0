@@ -12,7 +12,7 @@ public class MeleeEnemy : BaseEnemy
 
         mFSM.Add((int)EnemyStateTypes.STRAFING, new EnemyState(mFSM, EnemyStateTypes.STRAFING, this));
 
-        //InitializeStrafingState();
+        InitializeStrafingState();
     }
 
     public override void InitializeChasingState()
@@ -25,7 +25,7 @@ public class MeleeEnemy : BaseEnemy
         {
             if (currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) <= strafingDist && currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude < rb.velocity.magnitude)
             {
-                //SetState(EnemyStateTypes.STRAFING);
+                SetState(EnemyStateTypes.STRAFING);
             }
         };
     }
@@ -43,7 +43,7 @@ public class MeleeEnemy : BaseEnemy
             movementModule.mb = movementData.FindMBPair(state.EnemyStateType);
 
             // Adjust the max speed of the entity
-            movementModule.maxSpeed = 45; 
+            movementModule.maxSpeed = 40; 
         };
 
         state.OnUpdateDelegate += delegate ()
@@ -65,12 +65,12 @@ public class MeleeEnemy : BaseEnemy
 
             if(currentTarget != null)
             {
-                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().FrontPos;
+                movementModule.CurrentTargetPos = currentTarget.GetComponent<MovementModule>().PosForwardx3;
                 lastPosOfTarget = (Vector2)currentTarget.position + currentTarget.GetComponent<Rigidbody2D>().velocity.normalized * currentTarget.GetComponent<Rigidbody2D>().velocity.magnitude/2;
                 //movementModule.CurrentTargetPos = lastPosOfTarget;
             }
 
-            if(currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) < 6 && attackController.readyToFight)
+            if(currentTarget != null && Vector2.Distance(currentTarget.position, transform.position) < 6 && attackModule.readyToFight)
             {
                 SetState(EnemyStateTypes.ATTACKING);
             }
