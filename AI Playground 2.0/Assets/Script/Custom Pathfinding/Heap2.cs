@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Functional as intended as at 23 May 2023
+/// </summary>
+/// <typeparam name="T"></typeparam>
+
 public class Heap2<T> where T : IHeapItem2<T>
 {
     T[] listOfItems;
@@ -24,7 +29,6 @@ public class Heap2<T> where T : IHeapItem2<T>
  
         totalIndexCount++;
 
-        Debug.Log("New Item:" + item.ToString());
     }
 
     // Return the root node value then resort the whole tree again 
@@ -50,24 +54,33 @@ public class Heap2<T> where T : IHeapItem2<T>
 
     public void SortDown(T item)
     {
-        if (item.HeapIndex * 2 + 1 >= listOfItems.Length) return;
-        T childItemA = listOfItems[(item.HeapIndex * 2) + 1];
-        T childItemB = default;
-        if (item.HeapIndex * 2 + 2 <= listOfItems.Length)
-        {
-            childItemB = listOfItems[(item.HeapIndex * 2) + 2];
-        }
+        #region Termination Condition
+        //This means that there is no more child node and the code has
+        if ((item.HeapIndex * 2) + 1 > totalIndexCount || (item.HeapIndex * 2) + 2 > totalIndexCount) return; 
+        #endregion
 
-        //Get Highest Child
-        T HighestItem = childItemA.CompareTo(childItemB) >= 0 ? childItemA : childItemB;
-        //Set up the recursive portion of the code and the swap
-        if(item.CompareTo(HighestItem) < 0)
-        {
-            Swap(item, HighestItem);
+        #region Get Children
+        //Get Child A
+        T childItemA = listOfItems[(item.HeapIndex * 2) + 1];
+            //Get Child B
+            T childItemB = listOfItems[(item.HeapIndex * 2) + 2];
+        #endregion
+
+        #region Compare Children
+            //Get Highest Child
+            T HighestItem = childItemA.CompareTo(childItemB) >= 0 ? childItemA : childItemB;
+        #endregion
+
+        #region Swap + Recursion
+            //Set up the recursive portion of the code and the swap
+            if (item.CompareTo(HighestItem) < 0)
             {
-                SortDown(item);
-            }
-        }
+                Swap(item, HighestItem);
+                {
+                    SortDown(item);
+                }
+            } 
+        #endregion
     }
 
     public void Swap(T itemA, T itemB)
